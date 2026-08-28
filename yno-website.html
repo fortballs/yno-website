@@ -110,5 +110,98 @@
            });
        }
    </script>
+
+    <!-- THE ARTISTIC CHECKOUT MODAL -->
+<div id="checkout-modal" class="modal-overlay">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeCheckout()">&times;</span>
+        <h2 style="font-size: 2rem; margin-bottom: 0.5rem;">Secure Checkout</h2>
+        <p style="font-size: 0.9rem; margin-bottom: 2rem;">Enter your details to claim this curated piece.</p>
+        
+        <!-- Fake Stripe-style Credit Card Form -->
+        <form id="checkout-form" onsubmit="processFakePayment(event)">
+            <label style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--color-muted);">Card Number</label>
+            <input type="text" placeholder="4242 4242 4242 4242" required style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; background: transparent; font-family: 'Inter', sans-serif;">
+            
+            <div style="display: flex; gap: 15px;">
+                <div style="flex: 1;">
+                    <label style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--color-muted);">Expiry</label>
+                    <input type="text" placeholder="MM/YY" required style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; background: transparent;">
+                </div>
+                <div style="flex: 1;">
+                    <label style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--color-muted);">CVC</label>
+                    <input type="text" placeholder="123" required style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; background: transparent;">
+                </div>
+            </div>
+
+            <div style="border-top: 1px solid #eee; padding-top: 20px; margin-top: 10px; display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-family: 'Playfair Display', serif; font-size: 1.2rem;">Total: $85.00</span>
+                <button type="submit" class="cta-button" style="margin-top: 0; padding: 12px 30px;">Pay with Test Card</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    /* Modal Styling to match the artistic vibe */
+    .modal-overlay {
+        display: none; /* Hidden by default */
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(44, 44, 44, 0.6); /* Dark, moody overlay */
+        backdrop-filter: blur(5px); /* Artistic blur effect */
+        justify-content: center; align-items: center;
+        z-index: 1000;
+    }
+    .modal-content {
+        background: var(--color-bg);
+        padding: 3rem;
+        width: 90%; max-width: 450px;
+        border-radius: 2px; /* Sharp, editorial corners */
+        position: relative;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    }
+    .close-modal {
+        position: absolute; top: 15px; right: 20px;
+        font-size: 2rem; cursor: pointer; color: var(--color-muted);
+    }
+</style>
+
+<script>
+    // Functions to open and close the beautiful modal
+    function openCheckout() {
+        document.getElementById('checkout-modal').style.display = 'flex';
+    }
+    function closeCheckout() {
+        document.getElementById('checkout-modal').style.display = 'none';
+    }
+
+    // The "Fake" Payment Processor
+    async function processFakePayment(event) {
+        event.preventDefault(); // Stop page reload
+        
+        // 1. Show a loading state (optional but looks professional)
+        const btn = event.target.querySelector('button');
+        btn.innerText = "Processing...";
+        btn.disabled = true;
+
+        // 2. Simulate a 2-second network delay (makes it feel real)
+        await new Promise(resolve => setTimeout(resolve, 2000));
+
+        // 3. Save the "Purchase" to your Supabase Database!
+        /* 
+        await supabase.from('orders').insert([
+            { user_id: currentUser.id, product_id: 1, amount: 85.00, status: 'paid' }
+        ]);
+        */
+
+        // 4. Success!
+        alert("Payment Successful! (Test Mode) The seller has been notified.");
+        closeCheckout();
+        btn.innerText = "Pay with Test Card";
+        btn.disabled = false;
+    }
+</script>
+    
 </body>
 </html>
