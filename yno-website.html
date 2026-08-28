@@ -95,6 +95,20 @@
         </div>
         <p style="font-size: 0.7rem; margin-top: 2rem;">&copy; 2026 YNO. All rights reserved.</p>
     </footer>
-
+    
+   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+   <script>
+       const supabaseUrl = 'https://fusvbrngqkunfsrdksml.supabase.co';
+       const supabaseKey = 'sb_publishable_LKa-zW3Ax9J0HoeZB-ic6Q_g5Atw-zY';
+       const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+       
+       // Example: Sign Up function
+       async function signUp() {
+           const { data, error } = await supabase.auth.signUp({
+               email: 'user@example.com',
+               password: 'securepassword'
+           });
+       }
+   </script>
 </body>
 </html>
