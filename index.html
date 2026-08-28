@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YNO | Curated Thrift</title>
     
+    <!-- BOTPRESS AI CHATBOT - MUST BE IN HEAD -->
+    <script src="https://cdn.botpress.cloud/webchat/v5.0/inject.js"></script>
+    <script src="https://files.bpcontent.cloud/2026/08/28/10/20260828102807-HY9Z2U4C.js" defer></script>
+    
     <!-- Hierarchical Typography & Artistic Styling -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap');
@@ -201,8 +205,8 @@
     <script>
         // --- 1. SUPABASE INITIALIZATION ---
         // REMEMBER TO REPLACE THESE WITH YOUR ACTUAL KEYS!
-        const supabaseUrl = 'https://fusvbrngqkunfsrdksml.supabase.co';
-        const supabaseKey = 'sb_publishable_LKa-zW3Ax9J0HoeZB-ic6Q_g5Atw-zY';
+        const supabaseUrl = 'YOUR_SUPABASE_URL';
+        const supabaseKey = 'YOUR_ANON_KEY';
         const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
         let currentProductId = null;
 
@@ -400,8 +404,5 @@
         }
     </script>
 
-    <!-- BOTPRESS AI CHATBOT -->
-    <script src="https://cdn.botpress.cloud/webchat/v5.0/inject.js"></script>
-    <script src="https://files.bpcontent.cloud/2026/08/28/10/20260828102807-HY9Z2U4C.js" defer></script>
 </body>
 </html>
