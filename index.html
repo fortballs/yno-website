@@ -38,11 +38,12 @@
         nav a { text-decoration: none; color: var(--color-text); margin: 0 10px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: color 0.3s; }
         nav a:hover { color: var(--color-accent); }
         
+        /* --- PAGE VISIBILITY LOGIC (FIXED) --- */
         .page-section { display: none; padding: 5rem 5%; min-height: 80vh; }
         .page-section.active { display: block; }
         
         /* --- HOME PAGE WITH BACKGROUND --- */
-        .hero { 
+        #home-page {
             text-align: center; 
             padding: 8rem 2rem; 
             background-image: linear-gradient(rgba(244, 241, 234, 0.75), rgba(244, 241, 234, 0.75)), 
@@ -51,12 +52,15 @@
             background-position: center;
             background-repeat: no-repeat;
             min-height: 80vh;
-            display: flex;
+        }
+        /* Only use flexbox to center content when home page is ACTIVE */
+        #home-page.active {
+            display: flex !important;
             flex-direction: column;
             justify-content: center;
             align-items: center;
         }
-        .hero h1, .hero h2 {
+        #home-page h1, #home-page h2 {
             text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.6);
         }
 
@@ -174,7 +178,7 @@
     </header>
 
     <!-- 1. HOME PAGE -->
-    <section id="home-page" class="page-section active hero">
+    <section id="home-page" class="page-section active">
         <h1>Wear the Story.</h1>
         <h2>Curated vintage & thrifted pieces, handpicked for the modern soul.</h2>
         <button class="cta-button" onclick="showPage('store-page')">Shop the Collection</button>
@@ -310,8 +314,8 @@
     <script>
         // --- 1. SUPABASE INITIALIZATION ---
         // REMEMBER TO REPLACE THESE WITH YOUR ACTUAL KEYS!
-        const supabaseUrl = 'https://fusvbrngqkunfsrdksml.supabase.co';
-        const supabaseKey = 'sb_publishable_LKa-zW3Ax9J0HoeZB-ic6Q_g5Atw-zY';
+        const supabaseUrl = 'YOUR_SUPABASE_URL';
+        const supabaseKey = 'YOUR_ANON_KEY';
         const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
 
         let currentProductId = null;
