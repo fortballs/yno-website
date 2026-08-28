@@ -5,10 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YNO | Curated Thrift</title>
     
-    <!-- BOTPRESS AI CHATBOT -->
-  <script src="https://cdn.botpress.cloud/webchat/v5.0/inject.js"></script>
-<script src="https://files.bpcontent.cloud/2026/08/28/10/20260828102807-HY9Z2U4C.js" defer></script>
-    
     <!-- Hierarchical Typography & Artistic Styling -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap');
@@ -204,7 +200,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         // --- 1. SUPABASE INITIALIZATION ---
-        // REMEMBER TO REPLACE THESE WITH YOUR ACTUAL KEYS!
         const supabaseUrl = 'YOUR_SUPABASE_URL';
         const supabaseKey = 'YOUR_ANON_KEY';
         const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
@@ -334,7 +329,6 @@
                     <p>This piece was curated and listed by one of our trusted sellers in the YNO community.</p>
                 </div>
                 
-                <!-- REAL STRIPE PAYMENT LINK INTEGRATION -->
                 <a href="https://buy.stripe.com/test_fZueVfajR9MteCO1DYc7u00" target="_blank" class="cta-button" style="width: 100%; box-sizing: border-box; text-decoration: none;">Purchase This Piece</a>
                 
                 <button class="cta-button btn-danger" onclick="deleteProduct(${product.id})" style="width: 100%; margin-top: 10px;">Delete Listing</button>
@@ -404,5 +398,8 @@
         }
     </script>
 
+    <!-- BOTPRESS AI CHATBOT (Moved to bottom for performance) -->
+    <script src="https://cdn.botpress.cloud/webchat/v5.0/inject.js"></script>
+    <script src="https://files.bpcontent.cloud/2026/08/28/10/20260828102807-HY9Z2U4C.js" defer></script>
 </body>
 </html>
