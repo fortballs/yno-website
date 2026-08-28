@@ -10,9 +10,9 @@
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap');
 
         :root {
-            --color-bg: #F4F1EA; /* Warm thrift paper */
+            --color-bg: #F4F1EA; 
             --color-text: #2C2C2C;
-            --color-accent: #8B5A2B; /* Earthy leather brown */
+            --color-accent: #8B5A2B; 
             --color-muted: #6B6B6B;
         }
 
@@ -32,9 +32,10 @@
         p  { font-size: 1rem; color: var(--color-muted); max-width: 600px; }
 
         /* --- LAYOUT & NAVIGATION --- */
-        header { display: flex; justify-content: space-between; align-items: center; padding: 2rem 5%; border-bottom: 1px solid #ddd; position: sticky; top: 0; background: var(--color-bg); z-index: 100; }
-        .logo { margin:0; font-family: 'Playfair Display', serif; font-size: 1.5rem; text-transform: none; letter-spacing: 0; }
-        nav a { text-decoration: none; color: var(--color-text); margin: 0 12px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: color 0.3s; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 5%; border-bottom: 1px solid #ddd; position: sticky; top: 0; background: var(--color-bg); z-index: 100; }
+        .logo { margin:0; font-family: 'Playfair Display', serif; font-size: 1.5rem; text-transform: none; letter-spacing: 0; cursor: pointer; text-decoration: none; color: var(--color-text); }
+        nav { display: flex; align-items: center; gap: 5px; }
+        nav a { text-decoration: none; color: var(--color-text); margin: 0 10px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: color 0.3s; }
         nav a:hover { color: var(--color-accent); }
         
         .page-section { display: none; padding: 5rem 5%; min-height: 80vh; }
@@ -54,7 +55,7 @@
         .star { font-size: 1.5rem; cursor: pointer; color: #ccc; transition: 0.2s; }
         .star.active, .star:hover { color: var(--color-accent); }
 
-        /* --- CHECKOUT MODAL --- */
+        /* --- MODALS (Checkout & Auth) --- */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(44, 44, 44, 0.6); backdrop-filter: blur(5px); justify-content: center; align-items: center; z-index: 1000; }
         .modal-content { background: var(--color-bg); padding: 3rem; width: 90%; max-width: 450px; border-radius: 2px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
         .close-modal { position: absolute; top: 15px; right: 20px; font-size: 2rem; cursor: pointer; color: var(--color-muted); }
@@ -72,14 +73,16 @@
 
     <!-- HEADER & NAVIGATION -->
     <header>
-        <h3 class="logo">YNO.</h3>
+        <a href="#!" class="logo" onclick="showPage('home-page'); return false;">YNO.</a>
         <nav>
-            <a onclick="showPage('home-page')">Home</a>
-            <a onclick="showPage('store-page')">Store</a>
-            <a onclick="showPage('dashboard-page')">Dashboard</a>
-            <a onclick="showPage('seller-page')">Sell</a>
-            <a onclick="showPage('about-page')">About Us</a>
-            <a onclick="showPage('contact-page')">Contact</a>
+            <a href="#!" onclick="showPage('home-page'); return false;">Home</a>
+            <a href="#!" onclick="showPage('store-page'); return false;">Store</a>
+            <a href="#!" onclick="showPage('dashboard-page'); return false;">Dashboard</a>
+            <a href="#!" onclick="showPage('seller-page'); return false;">Sell</a>
+            <a href="#!" onclick="showPage('about-page'); return false;">About</a>
+            <a href="#!" onclick="showPage('contact-page'); return false;">Contact</a>
+            <!-- AUTH BUTTON -->
+            <a href="#!" id="auth-nav-btn" onclick="openAuth(); return false;" style="border: 1px solid var(--color-text); padding: 8px 16px; margin-left: 10px;">Account</a>
         </nav>
     </header>
 
@@ -99,7 +102,7 @@
         </div>
     </section>
 
-    <!-- 3. DASHBOARD PAGE (Buyer/Seller Overview) -->
+    <!-- 3. DASHBOARD PAGE -->
     <section id="dashboard-page" class="page-section">
         <h2>Your Dashboard</h2>
         <p>Welcome back. Here is a glimpse of your activity on YNO.</p>
@@ -127,16 +130,12 @@
         <form id="upload-form" onsubmit="uploadProduct(event)" style="max-width: 500px; margin-top: 2rem;">
             <label>Piece Title</label>
             <input type="text" id="prod-title" placeholder="e.g., 90s Oversized Leather Jacket" required>
-
             <label>Price ($)</label>
             <input type="number" id="prod-price" placeholder="85.00" step="0.01" required>
-
             <label>Image URL</label>
             <input type="url" id="prod-image" placeholder="https://images.unsplash.com/..." required>
-            
             <label>Description</label>
             <textarea id="prod-desc" placeholder="Tell the story of this piece..." rows="4"></textarea>
-
             <button type="submit" class="cta-button">Publish to Archive</button>
         </form>
     </section>
@@ -160,12 +159,12 @@
         <h3 style="color: #F4F1EA; text-transform: none; letter-spacing: 0; font-family: 'Playfair Display', serif; font-size: 1.5rem;">YNO.</h3>
         <p style="color: #aaa; font-size: 0.9rem;">Curated Thrift & Vintage Archive</p>
         <div class="sitemap">
-            <a onclick="showPage('home-page')">Home</a>
-            <a onclick="showPage('store-page')">Store</a>
-            <a onclick="showPage('dashboard-page')">Dashboard</a>
-            <a onclick="showPage('seller-page')">Sell</a>
-            <a onclick="showPage('about-page')">About</a>
-            <a onclick="showPage('contact-page')">Contact</a>
+            <a href="#!" onclick="showPage('home-page'); return false;">Home</a>
+            <a href="#!" onclick="showPage('store-page'); return false;">Store</a>
+            <a href="#!" onclick="showPage('dashboard-page'); return false;">Dashboard</a>
+            <a href="#!" onclick="showPage('seller-page'); return false;">Sell</a>
+            <a href="#!" onclick="showPage('about-page'); return false;">About</a>
+            <a href="#!" onclick="showPage('contact-page'); return false;">Contact</a>
         </div>
         <p style="font-size: 0.7rem; margin-top: 2rem; color: #666;">&copy; 2026 YNO. All rights reserved. | Test Mode Enabled</p>
     </footer>
@@ -176,11 +175,9 @@
             <span class="close-modal" onclick="closeCheckout()">&times;</span>
             <h2 style="font-size: 2rem; margin-bottom: 0.5rem;">Secure Checkout</h2>
             <p style="font-size: 0.9rem; margin-bottom: 2rem;">Enter your details to claim this curated piece.</p>
-            
             <form id="checkout-form" onsubmit="processFakePayment(event)">
                 <label>Card Number</label>
                 <input type="text" placeholder="4242 4242 4242 4242" required>
-                
                 <div style="display: flex; gap: 15px;">
                     <div style="flex: 1;">
                         <label>Expiry</label>
@@ -191,7 +188,6 @@
                         <input type="text" placeholder="123" required>
                     </div>
                 </div>
-
                 <div style="border-top: 1px solid #eee; padding-top: 20px; margin-top: 10px; display: flex; justify-content: space-between; align-items: center;">
                     <span style="font-family: 'Playfair Display', serif; font-size: 1.2rem;">Total: $85.00</span>
                     <button type="submit" class="cta-button" style="margin-top: 0; padding: 12px 30px;">Pay with Test Card</button>
@@ -200,33 +196,107 @@
         </div>
     </div>
 
+    <!-- THE AUTHENTICATION MODAL (LOGIN / REGISTER) -->
+    <div id="auth-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeAuth()">&times;</span>
+            <h2 id="auth-title" style="font-size: 2rem; margin-bottom: 0.5rem;">Welcome Back</h2>
+            <p id="auth-subtitle" style="font-size: 0.9rem; margin-bottom: 2rem;">Sign in to your YNO account.</p>
+            
+            <form onsubmit="handleAuth(event)">
+                <label>Email Address</label>
+                <input type="email" id="auth-email" placeholder="you@example.com" required>
+                
+                <label>Password</label>
+                <input type="password" id="auth-password" placeholder="••••••••" required>
+
+                <button type="submit" class="cta-button" id="auth-submit-btn" style="width: 100%; margin-top: 10px;">Sign In</button>
+            </form>
+
+            <p style="text-align: center; margin-top: 1.5rem; font-size: 0.9rem; cursor: pointer; text-decoration: underline; color: var(--color-muted);" onclick="toggleAuthMode()">
+                <span id="auth-toggle-text">Don't have an account? Create one.</span>
+            </p>
+        </div>
+    </div>
+
     <!-- SCRIPTS -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         // --- 1. SUPABASE INITIALIZATION ---
-        // REPLACE THESE WITH YOUR ACTUAL SUPABASE KEYS
+        // FIXED: Renamed to 'supabaseClient' to avoid crashing the script!
         const supabaseUrl = 'YOUR_SUPABASE_URL';
         const supabaseKey = 'YOUR_ANON_KEY';
-        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
 
         // --- 2. PAGE NAVIGATION ---
         function showPage(pageId) {
-            // Hide all pages
             document.querySelectorAll('.page-section').forEach(page => {
                 page.classList.remove('active');
             });
-            // Show selected page
             document.getElementById(pageId).classList.add('active');
             
-            // Load products if going to store
             if(pageId === 'store-page') {
                 loadProducts();
             }
-            // Scroll to top
             window.scrollTo(0, 0);
         }
 
-        // --- 3. SELLER: UPLOAD PRODUCT ---
+        // --- 3. AUTHENTICATION LOGIC ---
+        let isSignUp = false;
+
+        function openAuth() { document.getElementById('auth-modal').style.display = 'flex'; }
+        function closeAuth() { document.getElementById('auth-modal').style.display = 'none'; }
+
+        function toggleAuthMode() {
+            isSignUp = !isSignUp;
+            document.getElementById('auth-title').innerText = isSignUp ? 'Join YNO' : 'Welcome Back';
+            document.getElementById('auth-subtitle').innerText = isSignUp ? 'Create your account to start curating.' : 'Sign in to your YNO account.';
+            document.getElementById('auth-submit-btn').innerText = isSignUp ? 'Create Account' : 'Sign In';
+            document.getElementById('auth-toggle-text').innerText = isSignUp ? 'Already have an account? Sign in.' : "Don't have an account? Create one.";
+        }
+
+        async function handleAuth(event) {
+            event.preventDefault();
+            const email = document.getElementById('auth-email').value;
+            const password = document.getElementById('auth-password').value;
+
+            let result;
+            if (isSignUp) {
+                result = await supabaseClient.auth.signUp({ email, password });
+            } else {
+                result = await supabaseClient.auth.signInWithPassword({ email, password });
+            }
+
+            if (result.error) {
+                alert("Error: " + result.error.message);
+            } else {
+                if (isSignUp) {
+                    alert("Account created! (Note: Check your email to confirm if Supabase requires it).");
+                } else {
+                    alert("Signed in successfully!");
+                }
+                closeAuth();
+            }
+        }
+
+        async function signOut() {
+            await supabaseClient.auth.signOut();
+            alert("You have been logged out.");
+        }
+
+        // Listen to Auth State Changes to update the header button
+        supabaseClient.auth.onAuthStateChange((event, session) => {
+            const authBtn = document.getElementById('auth-nav-btn');
+            if (session) {
+                authBtn.innerText = 'Log Out';
+                authBtn.onclick = function() { signOut(); return false; };
+            } else {
+                authBtn.innerText = 'Account';
+                authBtn.onclick = function() { openAuth(); return false; };
+            }
+        });
+
+        // --- 4. SELLER: UPLOAD PRODUCT ---
         async function uploadProduct(event) {
             event.preventDefault();
             const title = document.getElementById('prod-title').value;
@@ -234,7 +304,7 @@
             const image_url = document.getElementById('prod-image').value;
             const description = document.getElementById('prod-desc').value;
 
-            const { data, error } = await supabase
+            const { data, error } = await supabaseClient
                 .from('products')
                 .insert([{ 
                     title: title, 
@@ -254,12 +324,12 @@
             }
         }
 
-        // --- 4. BUYER: LOAD PRODUCTS ---
+        // --- 5. BUYER: LOAD PRODUCTS ---
         async function loadProducts() {
             const grid = document.getElementById('product-grid');
             grid.innerHTML = '<p>Loading curated pieces...</p>';
 
-            const { data, error } = await supabase
+            const { data, error } = await supabaseClient
                 .from('products')
                 .select('*')
                 .order('created_at', { ascending: false });
@@ -283,8 +353,6 @@
                         <div style="padding: 1.5rem 0;">
                             <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; text-transform: none; letter-spacing: 0; margin-bottom: 0.5rem;">${product.title}</h3>
                             <p style="font-size: 0.9rem; color: var(--color-muted); margin-bottom: 1rem;">${product.description || 'A curated vintage piece.'}</p>
-                            
-                            <!-- Star Rating UI -->
                             <div class="rating-system">
                                 <span class="star" data-value="1">&#9733;</span>
                                 <span class="star" data-value="2">&#9733;</span>
@@ -292,7 +360,6 @@
                                 <span class="star" data-value="4">&#9733;</span>
                                 <span class="star" data-value="5">&#9733;</span>
                             </div>
-
                             <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 1rem; margin-top: 1rem;">
                                 <span style="font-family: 'Playfair Display', serif; font-size: 1.25rem;">$${product.price}</span>
                                 <button class="cta-button" style="padding: 10px 20px; font-size: 0.8rem; margin:0;" onclick="openCheckout()">Purchase</button>
@@ -302,12 +369,10 @@
                 `;
                 grid.innerHTML += productCard;
             });
-            
-            // Re-attach star click events to newly loaded stars
             attachStarEvents();
         }
 
-        // --- 5. CHECKOUT MODAL LOGIC ---
+        // --- 6. CHECKOUT MODAL LOGIC ---
         function openCheckout() {
             document.getElementById('checkout-modal').style.display = 'flex';
         }
@@ -321,7 +386,7 @@
             btn.innerText = "Processing...";
             btn.disabled = true;
 
-            await new Promise(resolve => setTimeout(resolve, 2000)); // 2 sec delay
+            await new Promise(resolve => setTimeout(resolve, 2000));
 
             alert("Payment Successful! (Test Mode) The seller has been notified.");
             closeCheckout();
@@ -329,7 +394,7 @@
             btn.disabled = false;
         }
 
-        // --- 6. STAR RATING LOGIC ---
+        // --- 7. STAR RATING LOGIC ---
         function attachStarEvents() {
             document.querySelectorAll('.star').forEach(star => {
                 star.addEventListener('click', () => {
@@ -342,12 +407,6 @@
                 });
             });
         }
-
-        // Initial load
-        document.addEventListener('DOMContentLoaded', () => {
-            // We don't auto-load products on home page to keep it clean, 
-            // but we ensure the home page is active.
-        });
     </script>
 </body>
 </html>
