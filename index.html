@@ -38,10 +38,37 @@
         .page-section { display: none; padding: 5rem 5%; min-height: 80vh; }
         .page-section.active { display: block; }
         
-        .hero { text-align: center; padding: 8rem 2rem; }
-        .cta-button { background: var(--color-text); color: var(--color-bg); padding: 15px 40px; border: none; font-size: 0.9rem; cursor: pointer; letter-spacing: 2px; text-transform: uppercase; margin-top: 2rem; transition: 0.3s; font-family: 'Inter', sans-serif;}
-        .cta-button:hover { background: var(--color-accent); }
+/* Updated HOME PAGE with background image */
+.hero { 
+    text-align: center; 
+    padding: 8rem 2rem; 
+    background-image: linear-gradient(rgba(244, 241, 234, 0.7), rgba(244, 241, 234, 0.7)), 
+                      url('https://stylecaster.com/wp-content/uploads/2019/03/zara-campaign-collection-e1553102478851.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
+/* Updated ABOUT PAGE with background image */
+#about-page {
+    background-image: linear-gradient(rgba(244, 241, 234, 0.85), rgba(244, 241, 234, 0.85)), 
+                      url('https://www.refinery29.com/images/11869643.jpg?format=webp&width=720&height=1080&quality=85');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 80vh;
+}
+
+/* Ensure text is readable on backgrounds */
+.hero h1, .hero h2 {
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+}
         #product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 3rem; margin-top: 3rem; }
         .product-card { cursor: pointer; transition: transform 0.3s; }
         .product-card:hover { transform: translateY(-5px); }
